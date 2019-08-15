@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: r2dbc-postgres-demo
+    environment:
+      POSTGRES_USER: name
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/data/postgres
+    networks:
+      - postgres-demo
+    restart: unless-stopped
+
+networks:
+  postgres-demo:
+    driver: bridge
+
+volumes:
+  dbdata:
