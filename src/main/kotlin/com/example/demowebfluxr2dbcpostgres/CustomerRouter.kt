@@ -15,9 +15,19 @@ class CustomerRouter() {
     private lateinit var customerRepository: CustomerRepository
 
     @Bean
-    fun getAllCustomersRoute(): RouterFunction<ServerResponse> =
-            router { GET("/customers")
-            {
-                ok().body(customerRepository.findAll(), Customer::class.java)
-            } }
+    fun getAllCustomersRoute(): RouterFunction<ServerResponse> = router {
+        GET("/customers")
+        {
+            ok().body(customerRepository.findAll(), Customer::class.java)
+        }
+    }
+
+    @Bean
+    fun getCustomerByNameRoute(): RouterFunction<ServerResponse> = router {
+        GET("/customer/{name}") {
+            ok().body(
+                    customerRepository.findByName(it.pathVariable("name")), Customer::class.java)
+        }
+    }
+
 }
