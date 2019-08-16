@@ -1,22 +1,22 @@
 package com.example.demowebfluxr2dbcpostgres
 
-import org.springframework.context.annotation.Configuration
 import io.r2dbc.postgresql.PostgresqlConnectionConfiguration
 import io.r2dbc.postgresql.PostgresqlConnectionFactory
-import org.springframework.context.annotation.Bean
-import org.springframework.data.r2dbc.repository.support.R2dbcRepositoryFactory
-import org.springframework.data.relational.core.mapping.RelationalMappingContext
-import org.springframework.data.r2dbc.core.DatabaseClient
 import io.r2dbc.spi.ConnectionFactory
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration
+import org.springframework.data.r2dbc.core.DatabaseClient
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories
 
 @Configuration
 @EnableR2dbcRepositories
-class DatabaseConfig {
+class DatabaseConfig: AbstractR2dbcConfiguration() {
     @Bean
-    fun connectionFactory(): PostgresqlConnectionFactory = PostgresqlConnectionFactory(
+    override fun connectionFactory(): PostgresqlConnectionFactory = PostgresqlConnectionFactory(
             PostgresqlConnectionConfiguration.builder()
                     .host("localhost")
+                    .port(5432)
                     .database("postgres")
                     .username("name")
                     .password("pass")

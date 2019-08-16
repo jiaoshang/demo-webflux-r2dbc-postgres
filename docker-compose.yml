@@ -4,6 +4,7 @@ services:
     image: postgres:latest
     container_name: r2dbc-postgres-demo
     environment:
+      POSTGRES_DB: postgres
       POSTGRES_USER: name
       POSTGRES_PASSWORD: pass
     ports:
