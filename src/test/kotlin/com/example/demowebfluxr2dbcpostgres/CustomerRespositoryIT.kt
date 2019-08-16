@@ -37,18 +37,35 @@ class CustomerRespositoryIT {
     fun executeFindByName() {
         val david = Customer(null, "David")
 
-        StepVerifier.create(customerRepository.save(david)).expectNextMatches(Customer::hasId).verifyComplete()
-        StepVerifier.create(customerRepository.findByName("David")).expectNextCount(1).verifyComplete()
+        StepVerifier.create(
+                customerRepository.save(david))
+                .expectNextMatches(Customer::hasId)
+                .verifyComplete()
+        StepVerifier.create(
+                customerRepository.findByName("David"))
+                .expectNextCount(1)
+                .verifyComplete()
     }
 
     @Test
     fun executeDeleteByName() {
         val david = Customer(null, "David")
 
-        StepVerifier.create(customerRepository.save(david)).expectNextMatches(Customer::hasId).verifyComplete()
-        StepVerifier.create(customerRepository.findByName("David")).expectNextCount(1).verifyComplete()
+        StepVerifier.create(
+                customerRepository.save(david))
+                .expectNextMatches(Customer::hasId)
+                .verifyComplete()
+        StepVerifier.create(
+                customerRepository.findByName("David"))
+                .expectNextCount(1)
+                .verifyComplete()
 
-        StepVerifier.create(customerRepository.deleteAll()).verifyComplete()
-        StepVerifier.create(customerRepository.findByName("David")).expectNextCount(0).verifyComplete()
+        StepVerifier.create(
+                customerRepository.deleteAll())
+                .verifyComplete()
+        StepVerifier.create(
+                customerRepository.findByName("David"))
+                .expectNextCount(0)
+                .verifyComplete()
     }
 }
